@@ -84,9 +84,3 @@ Casos usados:
 - texto vazio: `0x00000000`
 - `"123456789"`: `0xE3069283`
 - `"Ola mundo"`: `0xF741C7D0`
-
-## Observacao
-
-CRC32C e usado para verificar integridade de dados, ou seja, ajudar a perceber alteracoes acidentais em uma mensagem ou arquivo.
-
-Ele nao deve ser usado como algoritmo de seguranca ou criptografia.
