@@ -69,6 +69,117 @@ Resultado esperado:
 CRC32C: 0xE3069283
 ```
 
+## Metodos da classe `Crc32c`
+
+### `Crc32c()`
+
+Cria um novo objeto CRC32C com valor inicial `0`.
+
+```java
+Crc32c crc32c = new Crc32c();
+```
+
+Use sempre que quiser comecar um novo calculo.
+
+### `update(int b)`
+
+Adiciona um unico byte ao calculo do CRC32C.
+
+```java
+Crc32c crc32c = new Crc32c();
+
+crc32c.update('A');
+
+System.out.printf("CRC32C: 0x%08X%n", crc32c.getValue());
+```
+
+Esse metodo e util quando os dados chegam um byte por vez.
+
+### `update(byte[] bArray, int off, int len)`
+
+Adiciona varios bytes ao calculo do CRC32C.
+
+Parametros:
+
+- `bArray`: vetor de bytes com os dados.
+- `off`: posicao inicial dentro do vetor.
+- `len`: quantidade de bytes que serao lidos.
+
+Exemplo usando o texto inteiro:
+
+```java
+Crc32c crc32c = new Crc32c();
+
+byte[] dados = "123456789".getBytes(StandardCharsets.UTF_8);
+crc32c.update(dados, 0, dados.length);
+
+System.out.printf("CRC32C: 0x%08X%n", crc32c.getValue());
+```
+
+Exemplo usando apenas parte do vetor:
+
+```java
+Crc32c crc32c = new Crc32c();
+
+byte[] dados = "abcdef".getBytes(StandardCharsets.UTF_8);
+crc32c.update(dados, 0, 3);
+
+System.out.printf("CRC32C dos 3 primeiros bytes: 0x%08X%n", crc32c.getValue());
+```
+
+Nesse exemplo, apenas os bytes de `"abc"` entram no calculo.
+
+### `getValue()`
+
+Retorna o valor atual do CRC32C como `long`.
+
+```java
+Crc32c crc32c = new Crc32c();
+
+byte[] dados = "123456789".getBytes(StandardCharsets.UTF_8);
+crc32c.update(dados, 0, dados.length);
+
+long resultado = crc32c.getValue();
+
+System.out.printf("CRC32C: 0x%08X%n", resultado);
+```
+
+Esse e o metodo usado para pegar o checksum calculado.
+
+### `getValueAsBytes()`
+
+Retorna o valor atual do CRC32C em um vetor de 4 bytes.
+
+```java
+Crc32c crc32c = new Crc32c();
+
+byte[] dados = "123456789".getBytes(StandardCharsets.UTF_8);
+crc32c.update(dados, 0, dados.length);
+
+byte[] resultado = crc32c.getValueAsBytes();
+```
+
+Esse metodo e util quando voce precisa gravar ou enviar o CRC32C em formato binario.
+
+### `reset()`
+
+Zera o calculo atual e permite reutilizar o mesmo objeto.
+
+```java
+Crc32c crc32c = new Crc32c();
+
+byte[] dados = "123456789".getBytes(StandardCharsets.UTF_8);
+crc32c.update(dados, 0, dados.length);
+
+System.out.printf("Antes do reset: 0x%08X%n", crc32c.getValue());
+
+crc32c.reset();
+
+System.out.printf("Depois do reset: 0x%08X%n", crc32c.getValue());
+```
+
+Depois do `reset()`, o valor volta para `0x00000000`.
+
 ## O que o `Main` valida
 
 O metodo `main` chama o metodo `testarCrc32c`, que:
