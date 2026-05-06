@@ -1,12 +1,12 @@
 # Algoritmo CRC32C
 
-## Autores do projeto
-José Vitor Ribeiro Pereira
-Vinicius Paolicchi
-
 Implementacao simples do algoritmo CRC32C em Java.
 
 O objetivo do projeto e mostrar, de forma didatica, como calcular e validar um checksum usando uma classe propria chamada `Crc32c`.
+
+## Autores do projeto
+José Vitor Ribeiro Pereira, 
+Vinicius Paolicchi
 
 ## Arquivos do projeto
 
